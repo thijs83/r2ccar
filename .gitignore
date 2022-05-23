@@ -1,0 +1,6 @@
+# R2Ccar
+
+# ignore build and devel folder
+build/*
+devel/*
+

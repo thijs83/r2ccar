@@ -1,0 +1,35 @@
+<launch>
+  	<include 
+		file="$(find lidar_ros)/launch/X4.launch">
+  	</include>
+  	<include 
+		file="$(find apriltag_ros)/launch/continuous_detection.launch">
+  	</include>
+
+	<node
+		pkg="auto_jetracer"
+		type="lidar_process"
+		name="lidar_process2_node" >
+	</node>
+
+	<node
+		pkg="auto_jetracer"
+		type="pid_steer.py"
+		name="pid_steer2_node" >
+	</node>
+
+	<node
+		pkg="auto_jetracer"
+		type="pid_vel.py"
+		name="pid_vel2_node" >
+	</node>
+
+	<node
+		pkg="auto_jetracer"
+		type="racecar.py"
+		name="racecar2_node" >
+	</node>
+
+	
+
+</launch>

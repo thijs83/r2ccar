@@ -1,0 +1,12 @@
+<launch>
+  	<include file="$(find lidar_ros)/launch/X4.launch">
+  	</include>
+  	<include file="$(find apriltag_ros)/launch/continuous_detection.launch">
+  	</include>
+	
+	<node
+		pkg="auto_jetracer"
+		type="lidar_process"
+		name="lidar_process4_node" >
+	</node>
+</launch>

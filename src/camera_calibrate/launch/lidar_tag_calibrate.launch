@@ -1,0 +1,14 @@
+<launch>
+  	<include 
+		file="$(find lidar_ros)/launch/X4.launch">
+  	</include>
+  	<include 
+		file="$(find apriltag_ros)/launch/continuous_detection.launch">
+  	</include>
+
+	<node
+		pkg="camera_calibrate"
+		type="camera_lidar_calibrate"
+		name="camera_lidar_calibrate_node" >
+	</node>
+</launch>
