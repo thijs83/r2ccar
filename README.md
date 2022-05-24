@@ -72,13 +72,7 @@ There exists a problem with the waveshare cameras where the camera can give a re
 
 ### Calibration
 
-apriltag needs a calibrated camera so use :
-
-
-rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.03 image:=/csi_cam/image_raw camera:=/csi_cam --no-service-check
-to calibrate the camera
-(needs way more info)
---
+Apriltag needs a rectified image, therefore the camera should be calibrated. The guidelines for calibration can be found in the documentation below for the camera_calibrate package.
 
 
 ### Common errors
@@ -100,7 +94,7 @@ sudo gedit kdtree_flann.h
 ```
 
 and change:
-```bash
+```cpp
       /** \brief The KdTree search parameters for K-nearest neighbors. */
       ::flann::SearchParams param_k_;
 
@@ -108,7 +102,7 @@ and change:
       ::flann::SearchParams param_radius_;
 ```
 to:
-```bash
+```cpp
       /** \brief The KdTree search parameters for K-nearest neighbors. */
       ::flann::SearchParams *param_k_;
 
@@ -118,6 +112,30 @@ to:
 ## Docs
 
 
+### apriltag_ros
 
 
-#### Cite
+### auto_jetracer
+
+
+### camera_calibrate
+
+
+
+rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.03 image:=/csi_cam/image_raw camera:=/csi_cam --no-service-check
+to calibrate the camera
+(needs way more info)
+--
+
+### cytron_jetracer
+
+
+### dmpc
+
+
+
+### lidar_ros
+
+
+
+# Cite
