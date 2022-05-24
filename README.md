@@ -144,7 +144,7 @@ Each of the packages is discussed in their own section
 
 ### apriltag_ros
 
-**Note: This is a modified version of the package obtained from [AprilRobotics/apriltag_ros](https://github.com/AprilRobotics/apriltag_ros)
+**Note: This is a modified version of the package obtained from [AprilRobotics/apriltag_ros](https://github.com/AprilRobotics/apriltag_ros)**
 
 The continuous apriltag detector can be launched using:
 ```bash
@@ -168,7 +168,9 @@ The config folder contains two files, one for the apriltag settings and another 
 
 To find the intrinsic values 
 
+```bash
 rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.03 image:=/csi_cam/image_raw camera:=/csi_cam --no-service-check
+```
 to calibrate the camera
 (needs way more info)
 --
