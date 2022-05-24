@@ -1,4 +1,4 @@
-#### R2C car (Modified Jetracer Pro AI)
+# R2C car (Modified Jetracer Pro AI)
 
 This is the build and code for the cooperative driving platform R2C platform. This platform exists of multiple modified JetRacer Pro AI's. The platform is a lowcost alternative for cooperative driving experiments.
 
@@ -8,12 +8,12 @@ This is the build and code for the cooperative driving platform R2C platform. Th
 **Note: 
 
 
-## The Car
+### The Car
 
 The R2C car utilises the 8MP 160 deg FoV camera and an added YDLIDAR X4 for a 2D pointcloud for object recognition and distance measurements. 2 encoders are utilised to measure the RPM of the main gear, which is converted to a longitudinal velocity of the main body. 
 
 
-## Code
+### Code
 
 The code is tested on:
 * Ubuntu 18.04 LTS
@@ -21,9 +21,9 @@ The code is tested on:
 
 First follow the Setup below and then download this github page. Documentation for each of the packages is presented below.
 
-### Setup
+## Setup
 
-## Drivers
+### Drivers
 To setup the JetRacer Pro AI or R2C car, follow the instructions on: [JetRacer Setup Instructions](https://www.waveshare.com/wiki/JetRacer_AI_Kit).
 
 The Ubuntu version used by the Waveshare image at the time of building this project is 18.04 LTS and this could change in the future. For the Ubuntu 18.04 LTS version, the ROS Melodic version should be used. Installation instructions can be found [here] (http://wiki.ros.org/melodic/Installation/Ubuntu).
@@ -33,7 +33,7 @@ The driver should be downloaded for the LiDAR, which is in our case the YDLIDAR 
 **Note: if dev/ydlidar not working then reattach the usb cables to the jetson nano.**
 
 
-## AprilTag
+### AprilTag
 
 
 installallation of the AprilTag github
@@ -55,16 +55,16 @@ And finally the image geometry needed for publishing the images to the apriltag 
 
 $ sudo apt-get install ros-melodic-image-geometry
 
-## Download repository and build
+### Download repository and build
 
 
 
 
-## Check camera image
+### Check camera image
 
 There exists a problem with the waveshare cameras where the camera can give a reddish poor quality image. Follow the instructions [here](follow the instructions on: https://www.waveshare.com/wiki/IMX219-160_Camera) to resolve this problem. 
 
-## Calibration
+### Calibration
 
 apriltag needs a calibrated camera so use :
 
@@ -75,7 +75,7 @@ to calibrate the camera
 --
 
 
-## Common errors
+### Common errors
 
 > If an error accors during make (No rule to make target '/usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.3.2.0), Opencv was not installed correctly, then use the command:
 $ sudo apt install libopencv3.2
@@ -103,7 +103,7 @@ to:
       /** \brief The KdTree search parameters for radius search. */
       ::flann::SearchParams *param_radius_;
 '''
-#### Docs
+## Docs
 
 
 
