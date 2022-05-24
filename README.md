@@ -5,12 +5,12 @@ This is the build and code for the cooperative driving platform R2C platform. Th
 
 
 
-**Note: 
+**Note: The code used is free to be modified and used. The author is not responsible for any damages accoring during the use of this code.**
 
 
 ### The Car
 
-The R2C car utilises the 8MP 160 deg FoV camera and an added YDLIDAR X4 for a 2D pointcloud for object recognition and distance measurements. 2 encoders are utilised to measure the RPM of the main gear, which is converted to a longitudinal velocity of the main body. 
+The R2C car utilises the 8MP 160 deg FoV camera and an added YDLIDAR X4 for a 2D pointcloud for object recognition and distance measurements. 2 encoders are added to measure the RPM of the main gear, which is converted to a longitudinal velocity of the main body. 
 
 
 ### Code
@@ -36,7 +36,7 @@ The driver should be downloaded for the LiDAR, which is in our case the YDLIDAR 
 ### AprilTag
 
 
-installallation of the AprilTag github
+installallation of the [AprilTag github](https://github.com/AprilRobotics/apriltag)
 
 ```bash
 cd
@@ -45,7 +45,7 @@ cd apriltag
 mkdir build
 ```
 
-Download the github folder to the Downloads folder. Then, copy the content in the Downloads/apriltag/ to the build folder.
+Download the [AprilTag github](https://github.com/AprilRobotics/apriltag) folder to the Downloads folder. Then, copy the content in the Downloads/apriltag/ to the build folder.
 
 ```bash
 cd
@@ -63,7 +63,14 @@ sudo apt-get install ros-melodic-image-geometry
 
 ### Download repository and build
 
-
+Create a new folder:
+```bash
+cd
+mkdir r2ccar
+cd r2ccar
+git clone https://github.com/thijs83/r2ccar.git
+catkin_make
+```
 
 
 ### Check camera image
@@ -109,8 +116,31 @@ to:
       /** \brief The KdTree search parameters for radius search. */
       ::flann::SearchParams *param_radius_;
 ```
+
+## Arduino
+
+The arduino is connected to the encoders using the two digital interrupt pins of the Arduino Nano. For the first time connecting the arduino to the jetson nano, run the script startup_arduino.sh in a terminal.
+```bash
+cd
+cd r2ccar/arduino
+./startup_arduino
+```
+
+Now the USB port to the arduino is called arduino. verify with:
+```bash
+cd
+ls /dev/a*
+```
+You should see the file /dev/arduino. If not then you have to modify the ID in the script to the correct microcontroller you are using. 
+
+In the arduino folder you can also find the code that needs to be uploaded to the arduino for the use of the two encoders. The code measures the average period between detections inside a constant time window and converts this to a velocity measurement using the gear ratio and wheel radius. This velocity measurement is send to the Jetson Nano using the USB connection.
+
+
+
+
 ## Docs
 
+Each of the packages is discussed in their own section
 
 ### apriltag_ros
 
