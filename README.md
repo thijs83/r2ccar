@@ -38,22 +38,28 @@ The driver should be downloaded for the LiDAR, which is in our case the YDLIDAR 
 
 installallation of the AprilTag github
 
-$ cd
-$ mkdir apriltag
-$ cd apriltag
-$ mkdir build
+'''bash
+cd
+mkdir apriltag
+cd apriltag
+mkdir build
+'''
 
 Download the github folder to the Downloads folder. Then, copy the content in the Downloads/apriltag/ to the build folder.
 
-$ cd
-$ cd apriltag/build
-$ cmake -B build -DCMAKE_BUILD_TYPE=Release
-$ cd ..
-$ sudo cmake --build apriltag --target install
+'''bash
+cd
+cd apriltag/build
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cd ..
+sudo cmake --build apriltag --target install
+'''
 
 And finally the image geometry needed for publishing the images to the apriltag detector
 
-$ sudo apt-get install ros-melodic-image-geometry
+'''bash
+sudo apt-get install ros-melodic-image-geometry
+'''
 
 ### Download repository and build
 
@@ -88,7 +94,7 @@ $ cd /usr/include/pcl-1.8/pcl/kdtree/
 $ sudo gedit kdtree_flann.h
 
 and change:
-'''
+'''bash
       /** \brief The KdTree search parameters for K-nearest neighbors. */
       ::flann::SearchParams param_k_;
 
@@ -96,7 +102,7 @@ and change:
       ::flann::SearchParams param_radius_;
 '''
 to:
-'''
+'''bash
       /** \brief The KdTree search parameters for K-nearest neighbors. */
       ::flann::SearchParams *param_k_;
 
