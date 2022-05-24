@@ -131,7 +131,7 @@ Now the USB port to the arduino is called arduino. verify with:
 cd
 ls /dev/a*
 ```
-You should see the file /dev/arduino. If not then you have to modify the ID in the script to the correct microcontroller you are using. 
+You should see the file /dev/arduino. If the arduino is connected and /dev/arduino is not visible than you have to modify the ID in the script to the correct microcontroller you are using.
 
 In the arduino folder you can also find the code that needs to be uploaded to the arduino for the use of the two encoders. The code measures the average period between detections inside a constant time window and converts this to a velocity measurement using the gear ratio and wheel radius. This velocity measurement is send to the Jetson Nano using the USB connection.
 
@@ -144,13 +144,29 @@ Each of the packages is discussed in their own section
 
 ### apriltag_ros
 
+**Note: This is a modified version of the package obtained from [AprilRobotics/apriltag_ros](https://github.com/AprilRobotics/apriltag_ros)
+
+The continuous apriltag detector can be launched using:
+```bash
+roslaunch apriltag_ros continuous_detection.launch
+```
+This will launch the AprilTag detector and a camera node. The camera node found in the scripts folder contains all the camera calibration data and camera capture settings. The images received from the camera module using Gstreamer are rectified and cropped to finally be published. The Gstreamer gets the image from the camera module in the NV12 format, and this needs to be changed to a format that opencv can use. Most used format is RGB but the problem is that conversion is done on the CPU and is heavy for this format. With the I420 format the conversion process is less heavy and we can take out the grey image directly for the apriltag algorithm. 
+
+To view the camera feed, start the image_node.py node and use:
+```bash
+rqt_image_view
+```
+and subscribe to the image publisher to view the output.
+
+The config folder contains two files, one for the apriltag settings and another for the tags that you want to detect in the image feed. For the settings and more info on the detector go to [AprilRobotics/apriltag_ros](https://github.com/AprilRobotics/apriltag_ros). In the tags file you have to specify the ID of the used tag or tags, to find the tags and more information see [AprilRobotics/apriltag_ros](https://github.com/AprilRobotics/apriltag_ros).
+
 
 ### auto_jetracer
 
 
 ### camera_calibrate
 
-
+To find the intrinsic values 
 
 rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.03 image:=/csi_cam/image_raw camera:=/csi_cam --no-service-check
 to calibrate the camera
@@ -159,6 +175,10 @@ to calibrate the camera
 
 ### cytron_jetracer
 
+An easy package to start basic commands on the JetRacer Pro AI or R2C car. The original code can be found on [CytronTechnologies/cytron_jetracer github](https://github.com/CytronTechnologies/cytron_jetracer). Some minor modification are made. One of the most important changes is the steering gain in the racecar.py file. The original setting of 1 distroyed two of the original servo motors. The wheels only turn between the values -0.3 to 0.3, to still have the -1 to 1 range as input a gain of 0.3 is used. This will cause the servo motor to only work in the reachable range of the steering. More information and examples to start driving can be found in 
+
+
+**Note: The JetRacer Pro AI steering can change in the future, therefore check for yourself the best steering_gain to achieve the maximum reachable range for the steering.**
 
 ### dmpc
 
