@@ -38,28 +38,28 @@ The driver should be downloaded for the LiDAR, which is in our case the YDLIDAR 
 
 installallation of the AprilTag github
 
-'''bash
+```bash
 cd
 mkdir apriltag
 cd apriltag
 mkdir build
-'''
+```
 
 Download the github folder to the Downloads folder. Then, copy the content in the Downloads/apriltag/ to the build folder.
 
-'''bash
+```bash
 cd
 cd apriltag/build
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cd ..
 sudo cmake --build apriltag --target install
-'''
+```
 
 And finally the image geometry needed for publishing the images to the apriltag detector
 
-'''bash
+```bash
 sudo apt-get install ros-melodic-image-geometry
-'''
+```
 
 ### Download repository and build
 
@@ -84,31 +84,37 @@ to calibrate the camera
 ### Common errors
 
 > If an error accors during make (No rule to make target '/usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.3.2.0), Opencv was not installed correctly, then use the command:
-$ sudo apt install libopencv3.2
+```bash
+sudo apt install libopencv3.2
+```
 
 > If problems with cvbridge occur during catkin make use the command:
-$sudo ln -s /usr/include/opencv4/opencv2/ /usr/include/opencv
+```bash
+sudo ln -s /usr/include/opencv4/opencv2/ /usr/include/opencv
+```
 
 > If during catkin_make the build process gives an error about flann::search than use commands:
-$ cd /usr/include/pcl-1.8/pcl/kdtree/
-$ sudo gedit kdtree_flann.h
+```bash
+cd /usr/include/pcl-1.8/pcl/kdtree/
+sudo gedit kdtree_flann.h
+```
 
 and change:
-'''bash
+```bash
       /** \brief The KdTree search parameters for K-nearest neighbors. */
       ::flann::SearchParams param_k_;
 
       /** \brief The KdTree search parameters for radius search. */
       ::flann::SearchParams param_radius_;
-'''
+```
 to:
-'''bash
+```bash
       /** \brief The KdTree search parameters for K-nearest neighbors. */
       ::flann::SearchParams *param_k_;
 
       /** \brief The KdTree search parameters for radius search. */
       ::flann::SearchParams *param_radius_;
-'''
+```
 ## Docs
 
 
